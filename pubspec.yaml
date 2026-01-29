@@ -1,0 +1,52 @@
+name: tri_shield_captcha
+description: A comprehensive Flutter CAPTCHA solution with multi-layer security verification including device fingerprinting, ALTCHA, and slider CAPTCHA.
+version: 1.0.0
+homepage: https://github.com/yourusername/tri_shield_captcha
+repository: https://github.com/yourusername/tri_shield_captcha
+issue_tracker: https://github.com/yourusername/tri_shield_captcha/issues
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: ">=3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # HTTP client
+  http: ^1.1.0
+  
+  # ALTCHA widget
+  altcha_widget: ^1.0.0
+  
+  # Device information
+  device_info_plus: ^10.0.0
+  
+  # Safe device check
+  safe_device: ^1.1.8
+
+  battery_plus:
+  connectivity_plus:
+  jailbreak_root_detection:
+  sensors_plus:
+  
+  # Crypto utilities
+  crypto: ^3.0.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+  # To add assets to your package, add an assets section, like this:
+  # assets:
+  #   - images/a_dot_burr.jpeg
+  #   - images/a_dot_ham.jpeg
+  #
+  # For details regarding assets in packages, see
+  # https://flutter.dev/assets-and-images/#from-packages
