@@ -1,9 +1,9 @@
 name: tri_shield_captcha
 description: A comprehensive Flutter CAPTCHA solution with multi-layer security verification including device fingerprinting, ALTCHA, and slider CAPTCHA.
 version: 1.0.0
-homepage: https://github.com/yourusername/tri_shield_captcha
-repository: https://github.com/yourusername/tri_shield_captcha
-issue_tracker: https://github.com/yourusername/tri_shield_captcha/issues
+homepage: https://github.com/Haider-Dictalabs/tri_shield_captcha
+repository: https://github.com/Haider-Dictalabs/tri_shield_captcha
+issue_tracker: https://github.com/Haider-Dictalabs/tri_shield_captcha/issues
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -12,26 +12,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  
-  # HTTP client
-  http: ^1.1.0
-  
-  # ALTCHA widget
-  altcha_widget: ^1.0.0
-  
-  # Device information
-  device_info_plus: ^10.0.0
-  
-  # Safe device check
-  safe_device: ^1.1.8
 
+  http:
+  altcha_widget:
+  device_info_plus:
+  safe_device: ^1.1.8
   battery_plus:
   connectivity_plus:
   jailbreak_root_detection:
   sensors_plus:
-  
-  # Crypto utilities
-  crypto: ^3.0.3
+  crypto:
 
 dev_dependencies:
   flutter_test:
