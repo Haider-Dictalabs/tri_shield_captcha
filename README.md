@@ -4,24 +4,24 @@ A comprehensive Flutter CAPTCHA solution with multi-layer security verification.
 
 ## Features
 
-✅ **Multi-Layer Security**
+**Multi-Layer Security**
 - Level 1: Device fingerprinting and bot detection
 - Level 2: ALTCHA proof-of-work challenge
 - Level 3: Interactive slider CAPTCHA
 
-✅ **Device Fingerprinting**
+**Device Fingerprinting**
 - Platform detection
 - Device information collection
 - Root/Jailbreak detection
 - Development mode detection
 - Risk scoring algorithm
 
-✅ **Flexible Configuration**
+**Flexible Configuration**
 - Configurable security levels
 - Multi-layer failover support
 - Customizable API endpoints
 
-✅ **Easy Integration**
+**Easy Integration**
 - Simple widget-based API
 - Callback-based result handling
 - Minimal setup required
@@ -32,7 +32,9 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  tri_shield_captcha: ^1.0.0
+  tri_shield_captcha:
+      git:
+        url: https://github.com/Haider-Dictalabs/tri_shield_captcha.git
 ```
 
 Then run:
@@ -188,50 +190,7 @@ TriShield CAPTCHA supports three security levels:
 
 The security level is configured server-side through your TriShield dashboard.
 
-## Models
-
-### CaptchaResult
-
-```dart
-class CaptchaResult {
-  final bool isVerified;  // Whether CAPTCHA was successfully verified
-  final String? uuid;     // Unique verification ID (for server validation)
-}
-```
-
-### DeviceFingerprint
-
-```dart
-class DeviceFingerprint {
-  final String platform;           // iOS, Android, Web, etc.
-  final String device;             // Device name
-  final String brand;              // Manufacturer
-  final String model;              // Device model
-  final String osVersion;          // OS version
-  final bool isPhysicalDevice;     // Real device vs emulator
-  final bool isRooted;             // Root/Jailbreak status
-  final bool isDevelopmentMode;    // Developer mode enabled
-  final String hash;               // Unique device hash
-  final String timestamp;          // Generation timestamp
-}
-```
-
 ## Customization
-
-### Custom Constants
-
-You can modify the constants if you're using a self-hosted version:
-
-```dart
-import 'package:tri_shield_captcha/tri_shield_captcha.dart';
-
-// These are the default values
-class Constants {
-  static const triShieldBaseUrl = 'https://api.trishield.dictalabs.com';
-  static const captchaBaseUrl = 'https://captcha-demo.dictalabs.com';
-  // ... other constants
-}
-```
 
 ### Logging
 
@@ -270,10 +229,6 @@ Common error states:
 |----------|-----------|
 | Android | ✅ |
 | iOS | ✅ |
-| Web | ✅ |
-| macOS | ✅ |
-| Windows | ✅ |
-| Linux | ✅ |
 
 ## Dependencies
 
@@ -310,13 +265,6 @@ flutter pub get
 flutter pub upgrade
 ```
 
-## Support
-
-For issues, questions, or contributions:
-- 📧 Email: support@trishield.com
-- 🐛 Issues: [GitHub Issues](https://github.com/yourusername/tri_shield_captcha/issues)
-- 📖 Documentation: [Official Docs](https://docs.trishield.com)
-
 ## License
 
 MIT License - see LICENSE file for details
@@ -326,5 +274,3 @@ MIT License - see LICENSE file for details
 Contributions are welcome! Please read our contributing guidelines before submitting PRs.
 
 ---
-
-Made with ❤️ by DictaLabs
