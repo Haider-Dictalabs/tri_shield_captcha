@@ -21,6 +21,7 @@ class AuthCaptcha extends StatefulWidget {
     required this.webUrl,
     this.includePadding = true,
   });
+
   final void Function(CaptchaResult result) onResult;
   final String apiKey;
   final String webUrl;
