@@ -1,5 +1,6 @@
+import 'package:auth_captcha/models/captcha_result.dart';
+import 'package:auth_captcha/widgets/auth_captcha.dart';
 import 'package:flutter/material.dart';
-import 'package:tri_shield_captcha/tri_shield_captcha.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'TriShield CAPTCHA Demo',
+      title: 'AUTH CAPTCHA Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
@@ -198,7 +199,7 @@ class _BasicExamplePageState extends State<BasicExamplePage> {
             const SizedBox(height: 24),
             
             // CAPTCHA Widget
-            TriShieldCaptcha(
+            AuthCaptcha(
               apiKey: 'YOUR_API_KEY_HERE', // Replace with your API key
               webUrl: 'https://yourwebsite.com', // Replace with your URL
               onResult: _handleCaptchaResult,
@@ -365,7 +366,7 @@ class _LoginFormExampleState extends State<LoginFormExample> {
               const SizedBox(height: 24),
               
               // CAPTCHA
-              TriShieldCaptcha(
+              AuthCaptcha(
                 apiKey: 'YOUR_API_KEY_HERE',
                 webUrl: 'https://yourwebsite.com',
                 onResult: _handleCaptchaResult,
@@ -588,7 +589,7 @@ class _RegistrationFormExampleState extends State<RegistrationFormExample> {
               const SizedBox(height: 16),
               
               // CAPTCHA
-              TriShieldCaptcha(
+              AuthCaptcha(
                 apiKey: 'YOUR_API_KEY_HERE',
                 webUrl: 'https://yourwebsite.com',
                 onResult: _handleCaptchaResult,

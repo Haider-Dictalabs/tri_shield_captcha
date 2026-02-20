@@ -15,7 +15,7 @@ dependencies:
 
 ## Basic Usage
 ```dart
-import 'package:tri_shield_captcha/tri_shield_captcha.dart';
+import 'package:tri_shield_captcha/auth_captcha.dart';
 
 TriShieldCaptcha(
   apiKey: 'your-api-key',

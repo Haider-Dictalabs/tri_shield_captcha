@@ -20,7 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Cross-platform support (iOS, Android, Web, Desktop)
 
 ### Features
-- `TriShieldCaptcha` widget for easy integration
+- `AuthCaptcha` widget for easy integration
 - `SliderCaptcha` standalone widget
 - Device fingerprint generation and analysis
 - Automatic IP detection

@@ -1,7 +1,4 @@
 class SecurityVerificationResponse {
-  final bool valid;
-  final int securityLevel;
-  final bool multiLayerFailOver;
 
   SecurityVerificationResponse({
     required this.valid,
@@ -16,4 +13,7 @@ class SecurityVerificationResponse {
       multiLayerFailOver: json['multi_layer_failover'] as bool,
     );
   }
+  final bool valid;
+  final int securityLevel;
+  final bool multiLayerFailOver;
 }

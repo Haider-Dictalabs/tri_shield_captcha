@@ -102,7 +102,7 @@ TriShield CAPTCHA provides a complete, multi-layer security solution for Flutter
 
 2. **Import and use**:
    ```dart
-   import 'package:tri_shield_captcha/tri_shield_captcha.dart';
+   import 'package:tri_shield_captcha/auth_captcha.dart';
    
    TriShieldCaptcha(
      apiKey: 'your-api-key',

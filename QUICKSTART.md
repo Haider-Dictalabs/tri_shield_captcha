@@ -27,7 +27,7 @@ flutter pub get
 ## Step 3: Import the Package
 
 ```dart
-import 'package:tri_shield_captcha/tri_shield_captcha.dart';
+import 'package:tri_shield_captcha/auth_captcha.dart';
 ```
 
 ## Step 4: Add the Widget

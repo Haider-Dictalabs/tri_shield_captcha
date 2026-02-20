@@ -1,6 +1,6 @@
 # Contributing to TriShield CAPTCHA
 
-Thank you for your interest in contributing to TriShield CAPTCHA! This document provides guidelines for contributing to the project.
+Thank you for your interest in contributing to AuthShield CAPTCHA! This document provides guidelines for contributing to the project.
 
 ## Code of Conduct
 
@@ -116,7 +116,7 @@ flutter run
 
 Feel free to:
 - Open an issue for questions
-- Email: support@trishield.com
+- Email: support@authshield.com
 - Check existing issues and discussions
 
 Thank you for contributing! 🎉

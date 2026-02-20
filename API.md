@@ -5,7 +5,7 @@ Detailed API reference for TriShield CAPTCHA package.
 ## Table of Contents
 
 - [Widgets](#widgets)
-  - [TriShieldCaptcha](#trishieldcaptcha)
+  - [AuthShieldCaptcha](#authshieldcaptcha)
   - [SliderCaptcha](#slidercaptcha)
 - [Models](#models)
   - [CaptchaResult](#captcharesult)
@@ -21,14 +21,14 @@ Detailed API reference for TriShield CAPTCHA package.
 
 ## Widgets
 
-### TriShieldCaptcha
+### AuthShieldCaptcha
 
 The main CAPTCHA widget that provides multi-layer security verification.
 
 #### Constructor
 
 ```dart
-TriShieldCaptcha({
+AuthCaptcha({
   Key? key,
   required String apiKey,
   required String webUrl,
@@ -49,7 +49,7 @@ TriShieldCaptcha({
 #### Usage Example
 
 ```dart
-TriShieldCaptcha(
+AuthCaptcha(
   apiKey: 'your-api-key',
   webUrl: 'https://yourapp.com',
   onResult: (CaptchaResult result) {

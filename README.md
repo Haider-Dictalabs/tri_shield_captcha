@@ -49,7 +49,7 @@ flutter pub get
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:tri_shield_captcha/tri_shield_captcha.dart';
+import 'package:tri_shield_captcha/auth_captcha.dart';
 
 class MyLoginPage extends StatelessWidget {
   @override
@@ -76,7 +76,7 @@ class MyLoginPage extends StatelessWidget {
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:tri_shield_captcha/tri_shield_captcha.dart';
+import 'package:tri_shield_captcha/auth_captcha.dart';
 
 class AdvancedLoginPage extends StatefulWidget {
   @override
@@ -197,7 +197,7 @@ The security level is configured server-side through your TriShield dashboard.
 Enable/disable logging:
 
 ```dart
-import 'package:tri_shield_captcha/tri_shield_captcha.dart';
+import 'package:tri_shield_captcha/auth_captcha.dart';
 
 // The package includes AppLogger for debugging
 // Logs are automatically printed in debug mode

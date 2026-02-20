@@ -93,7 +93,7 @@ flutter run
    cd tri_shield_captcha
    git init
    git add .
-   git commit -m "Initial commit: TriShield CAPTCHA v1.0.0"
+   git commit -m "Initial commit: AuthShield CAPTCHA v1.0.0"
    git branch -M main
    git remote add origin https://github.com/YOUR_USERNAME/tri_shield_captcha.git
    git push -u origin main
@@ -174,9 +174,9 @@ dependencies:
 
 ### Basic Usage
 ```dart
-import 'package:tri_shield_captcha/tri_shield_captcha.dart';
+import 'package:tri_shield_captcha/auth_captcha.dart';
 
-TriShieldCaptcha(
+AuthShieldCaptcha(
   apiKey: 'user-api-key',
   webUrl: 'https://userapp.com',
   onResult: (result) {
@@ -189,7 +189,7 @@ TriShieldCaptcha(
 
 ### What Gets Exported
 Your main export file (`lib/tri_shield_captcha.dart`) exposes:
-- `TriShieldCaptcha` widget
+- `AuthShieldCaptcha` widget
 - `SliderCaptcha` widget
 - `CaptchaResult` model
 - `DeviceFingerprint` model
@@ -221,7 +221,7 @@ Your main export file (`lib/tri_shield_captcha.dart`) exposes:
 
 ```
 1. User opens app/form
-2. TriShieldCaptcha widget loads
+2. AuthShieldCaptcha widget loads
 3. Validates API key & URL
 4. Generates device fingerprint
 5. Calculates risk score

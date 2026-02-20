@@ -12,25 +12,25 @@ import '../models/security_verification_response.dart';
 import '../service/device_fingerprint_service.dart';
 import 'slider_captcha.dart';
 
-class TriShieldCaptcha extends StatefulWidget {
-  final void Function(CaptchaResult result) onResult;
-  final String apiKey;
-  final String webUrl;
-  final bool includePadding;
+class AuthCaptcha extends StatefulWidget {
 
-  const TriShieldCaptcha({
+  const AuthCaptcha({
     super.key,
     required this.onResult,
     required this.apiKey,
     required this.webUrl,
     this.includePadding = true,
   });
+  final void Function(CaptchaResult result) onResult;
+  final String apiKey;
+  final String webUrl;
+  final bool includePadding;
 
   @override
-  State<TriShieldCaptcha> createState() => _TriShieldCaptchaState();
+  State<AuthCaptcha> createState() => _AuthCaptchaState();
 }
 
-class _TriShieldCaptchaState extends State<TriShieldCaptcha> {
+class _AuthCaptchaState extends State<AuthCaptcha> {
   DeviceFingerprint? _fingerprint;
   int? _riskScore;
   String? ip;

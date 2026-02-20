@@ -1,7 +1,7 @@
 library tri_shield_captcha;
 
 // Widgets
-export 'widgets/tri_shield_captcha.dart';
+export 'widgets/auth_captcha.dart';
 export 'widgets/slider_captcha.dart';
 
 // Models
