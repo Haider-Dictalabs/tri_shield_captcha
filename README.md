@@ -33,8 +33,8 @@ Add this to your package's `pubspec.yaml` file:
 ```yaml
 dependencies:
   tri_shield_captcha:
-      git:
-        url: https://github.com/Haider-Dictalabs/tri_shield_captcha.git
+#      git:
+#        url: https://github.com/Haider-Dictalabs/tri_shield_captcha.git
 ```
 
 Then run:
