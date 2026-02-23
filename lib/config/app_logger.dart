@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 enum LogLevel { info, warning, error }
 
 class AppLogger {
+  AppLogger._();
   static bool enableLogs = kDebugMode;
 
   static void info(String message) {
@@ -25,7 +26,9 @@ class AppLogger {
     Object? error,
     StackTrace? stackTrace,
   }) {
-    if (!enableLogs) return;
+    if (!enableLogs) {
+      return;
+    }
 
     final prefix = switch (level) {
       LogLevel.info => 'ℹ️',

@@ -110,7 +110,7 @@ class _SliderCaptchaState extends State<SliderCaptcha> {
         AppLogger.warning('Failed to load captcha');
         setState(() => isLoading = false);
       }
-    } catch (e) {
+    } on Exception catch (e) {
       _logError('GET', Constants.newCaptchaUrl, e);
       widget.onFailed?.call('Failed to fetch slider images');
       AppLogger.error('Error fetching captcha');
@@ -171,7 +171,7 @@ class _SliderCaptchaState extends State<SliderCaptcha> {
         AppLogger.warning('Captcha verification failed, retrying');
         await fetchCaptcha();
       }
-    } catch (e) {
+    } on Exception catch (e) {
       _logError('POST', Constants.verifyCaptchaUrl, e);
       widget.onFailed?.call('Slider verification failed');
       setState(() => isLoading = false);

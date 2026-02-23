@@ -92,7 +92,7 @@ class _AuthCaptchaState extends State<AuthCaptcha> {
         await _saveCaptchaLog(success: true);
         _emitResult();
       }
-    } catch (e) {
+    } on Exception catch (e) {
       AppLogger.error('Captcha main flow failed', e);
       _invalidKeyOrUrl();
     } finally {
@@ -112,7 +112,7 @@ class _AuthCaptchaState extends State<AuthCaptcha> {
       final data = json.decode(response.body) as Map<String, dynamic>;
       AppLogger.info(data['ip']?.toString() ?? 'unknown');
       return data['ip']?.toString() ?? 'unknown';
-    } catch (e) {
+    } on Exception catch (e) {
       AppLogger.warning('Failed to fetch public IP: $e');
       return 'unknown';
     }
@@ -207,7 +207,7 @@ class _AuthCaptchaState extends State<AuthCaptcha> {
       if (response.statusCode == 200) {
         AppLogger.info('RESPONSE → ${response.body}');
       }
-    } catch (e) {
+    } on Exception catch (e) {
       _logError('POST', url, e);
     }
   }

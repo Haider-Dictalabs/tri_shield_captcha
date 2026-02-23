@@ -42,7 +42,7 @@ class ExampleListPage extends StatelessWidget {
             Icons.security,
                 () => Navigator.push(
               context,
-              MaterialPageRoute(
+              MaterialPageRoute<void>(
                 builder: (context) => const BasicExamplePage(),
               ),
             ),
@@ -55,7 +55,7 @@ class ExampleListPage extends StatelessWidget {
             Icons.login,
                 () => Navigator.push(
               context,
-              MaterialPageRoute(
+              MaterialPageRoute<void>(
                 builder: (context) => const LoginFormExample(),
               ),
             ),
@@ -68,7 +68,7 @@ class ExampleListPage extends StatelessWidget {
             Icons.person_add,
                 () => Navigator.push(
               context,
-              MaterialPageRoute(
+              MaterialPageRoute<void>(
                 builder: (context) => const RegistrationFormExample(),
               ),
             ),

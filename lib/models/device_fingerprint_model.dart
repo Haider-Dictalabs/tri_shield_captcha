@@ -1,18 +1,4 @@
 class DeviceFingerprint {
-  final String platform;
-  final String device;
-  final String? brand;
-  final String? model;
-  final String osVersion;
-  final bool isPhysicalDevice;
-  final bool isRooted;
-  final bool isDevelopmentMode;
-  final double? sensorVariance;
-  final int? batteryLevel;
-  final String? batteryState;
-  final String? networkType;
-  final String hash;
-  final int timestamp;
 
   const DeviceFingerprint({
     required this.platform,
@@ -31,25 +17,6 @@ class DeviceFingerprint {
     required this.timestamp,
   });
 
-  Map<String, dynamic> toJson() {
-    return {
-      'platform': platform,
-      'device': device,
-      'brand': brand,
-      'model': model,
-      'osVersion': osVersion,
-      'isPhysicalDevice': isPhysicalDevice,
-      'isRooted': isRooted,
-      'isDevelopmentMode': isDevelopmentMode,
-      'sensorVariance': sensorVariance,
-      'batteryLevel': batteryLevel,
-      'batteryState': batteryState,
-      'networkType': networkType,
-      'hash': hash,
-      'timestamp': timestamp,
-    };
-  }
-
   factory DeviceFingerprint.fromJson(Map<String, dynamic> json) {
     return DeviceFingerprint(
       platform: json['platform'] as String,
@@ -67,5 +34,38 @@ class DeviceFingerprint {
       hash: json['hash'] as String,
       timestamp: json['timestamp'] as int,
     );
+  }
+  final String platform;
+  final String device;
+  final String? brand;
+  final String? model;
+  final String osVersion;
+  final bool isPhysicalDevice;
+  final bool isRooted;
+  final bool isDevelopmentMode;
+  final double? sensorVariance;
+  final int? batteryLevel;
+  final String? batteryState;
+  final String? networkType;
+  final String hash;
+  final int timestamp;
+
+  Map<String, dynamic> toJson() {
+    return {
+      'platform': platform,
+      'device': device,
+      'brand': brand,
+      'model': model,
+      'osVersion': osVersion,
+      'isPhysicalDevice': isPhysicalDevice,
+      'isRooted': isRooted,
+      'isDevelopmentMode': isDevelopmentMode,
+      'sensorVariance': sensorVariance,
+      'batteryLevel': batteryLevel,
+      'batteryState': batteryState,
+      'networkType': networkType,
+      'hash': hash,
+      'timestamp': timestamp,
+    };
   }
 }

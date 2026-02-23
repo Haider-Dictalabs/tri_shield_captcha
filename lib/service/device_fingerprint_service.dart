@@ -30,7 +30,7 @@ class DeviceFingerprintService {
       try {
         isRooted = await JailbreakRootDetection().isJailBroken;
         isDevelopmentMode = await JailbreakRootDetection().isDebugged;
-      } catch (e) {
+      } on Exception catch (e) {
         AppLogger.warning('Root/dev detection failed: $e');
       }
 
@@ -41,7 +41,7 @@ class DeviceFingerprintService {
       } else {
         throw UnsupportedError('Platform not supported');
       }
-    } catch (e, stackTrace) {
+    } on Exception catch (e, stackTrace) {
       AppLogger.error('Fingerprint generation failed', e, stackTrace);
       rethrow;
     }
@@ -121,10 +121,10 @@ class DeviceFingerprintService {
 
     return DeviceFingerprint(
       platform: 'ios',
-      device: iosInfo.model,
+      device: iosInfo.model?? 'Model not available',
       brand: 'Apple',
       model: iosInfo.model,
-      osVersion: iosInfo.systemVersion,
+      osVersion: iosInfo.systemVersion?? '10',
       isPhysicalDevice: iosInfo.isPhysicalDevice,
       isRooted: isRooted,
       isDevelopmentMode: isDevelopmentMode,
@@ -172,7 +172,7 @@ class DeviceFingerprintService {
         'batteryLevel': await battery.batteryLevel,
         'batteryState': (await battery.batteryState).toString(),
       };
-    } catch (_) {
+    } on Exception catch (_) {
       return {'batteryLevel': -1, 'batteryState': 'unknown'};
     }
   }
