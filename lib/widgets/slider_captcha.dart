@@ -32,7 +32,7 @@ class _SliderCaptchaState extends State<SliderCaptcha> {
   Uint8List? bgBytes;
   Uint8List? pieceBytes;
 
-  double sliderValue = 0.0;
+  double sliderValue = 0;
   bool isLoading = true;
   bool isVerified = false;
 
@@ -84,7 +84,7 @@ class _SliderCaptchaState extends State<SliderCaptcha> {
       final response = await http.get(Uri.parse(Constants.newCaptchaUrl));
 
       if (response.statusCode == 200) {
-        final Map<String, dynamic> data =
+        final data =
         json.decode(response.body) as Map<String, dynamic>;
 
         _logSuccess('GET', Constants.newCaptchaUrl, data);
@@ -123,7 +123,9 @@ class _SliderCaptchaState extends State<SliderCaptcha> {
   // ─────────────────────────────────────────────────────────────
 
   Future<void> verifyCaptcha() async {
-    if (captchaData == null || isVerified) return;
+    if (captchaData == null || isVerified) {
+      return;
+    }
 
     final userX = sliderValue.toInt();
     final token = captchaData!['token'] as String;
@@ -140,7 +142,7 @@ class _SliderCaptchaState extends State<SliderCaptcha> {
         body: json.encode({'token': token, 'userX': userX}),
       );
 
-      final Map<String, dynamic> result =
+      final result =
       json.decode(response.body) as Map<String, dynamic>;
 
       if (response.statusCode == 200 && result['success'] == true) {
@@ -167,7 +169,7 @@ class _SliderCaptchaState extends State<SliderCaptcha> {
         widget.onFailed?.call('Slider verification failed');
         setState(() => isLoading = false);
         AppLogger.warning('Captcha verification failed, retrying');
-        fetchCaptcha();
+        await fetchCaptcha();
       }
     } catch (e) {
       _logError('POST', Constants.verifyCaptchaUrl, e);
@@ -283,7 +285,7 @@ class _SliderCaptchaState extends State<SliderCaptcha> {
                   'Powered by Dictalabs',
                   style: TextStyle(
                     fontSize: 12,
-                    color: colorScheme.onSurface.withOpacity(0.6),
+                    color: colorScheme.onSurface.withAlpha(6),
                   ),
                 ),
               ),

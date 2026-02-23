@@ -3,11 +3,9 @@ import 'dart:convert';
 import 'package:altcha_widget/altcha.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
 import '../config/app_logger.dart';
 import '../config/constants.dart';
 import '../models/captcha_result.dart';
-import '../models/device_fingerprint_model.dart';
 import '../models/security_verification_response.dart';
 import '../service/device_fingerprint_service.dart';
 import 'slider_captcha.dart';
@@ -31,8 +29,8 @@ class AuthCaptcha extends StatefulWidget {
 }
 
 class _AuthCaptchaState extends State<AuthCaptcha> {
-  DeviceFingerprint? _fingerprint;
-  int? _riskScore;
+  // DeviceFingerprint? _fingerprint;
+  // int? _riskScore;
   String? ip;
   int _securityLevel = 0;
   bool _isBot = false;
@@ -135,26 +133,32 @@ class _AuthCaptchaState extends State<AuthCaptcha> {
     );  }
 
   Future<void> _generateFingerprint() async {
-    final fp = await DeviceFingerprintService.generate();
-    final score = DeviceFingerprintService.calculateRiskScore(fp);
+    final fp = await DeviceFingerprintService.instance.generate();
+    final score = DeviceFingerprintService.instance.calculateRiskScore(fp);
 
     setState(() {
-      _fingerprint = fp;
-      _riskScore = score;
+      // _fingerprint = fp;
+      // _riskScore = score;
       _isBot = score >= Constants.botDetectionRiskThreshold;
     });
   }
 
   void _emitResult({String? uuid}) {
-    if (_resultEmitted) return;
+    if (_resultEmitted) {
+      return;
+    }
     _resultEmitted = true;
 
     widget.onResult(CaptchaResult(isVerified: true, uuid: uuid));
   }
 
   bool get _shouldHardBlockBot {
-    if (!_isBot) return false;
-    if (!_multiLayerFailOver) return true;
+    if (!_isBot) {
+      return false;
+    }
+    if (!_multiLayerFailOver) {
+      return true;
+    }
     return _securityLevel == 1;
   }
 
@@ -183,7 +187,7 @@ class _AuthCaptchaState extends State<AuthCaptcha> {
     String reason = '',
     String? failedCaptcha,
   }) async {
-    final url = Constants.saveCaptchaLogUrl;
+    const url = Constants.saveCaptchaLogUrl;
     final payload = {
       'timestamp': DateTime.now().toIso8601String(),
       'siteKey': widget.apiKey,
@@ -225,7 +229,7 @@ class _AuthCaptchaState extends State<AuthCaptcha> {
 
     if (_isInvalidKey) {
       return Text(
-        "Invalid key or URL",
+        'Invalid key or URL',
         style: TextStyle(
           color: Colors.red.shade700,
           fontWeight: FontWeight.w600,
@@ -267,26 +271,26 @@ class _AuthCaptchaState extends State<AuthCaptcha> {
     );
   }
 
-  Widget _buildFingerprintInfo() {
-    if (_fingerprint == null) return const SizedBox.shrink();
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('Platform: ${_fingerprint!.platform}'),
-        Text('Device: ${_fingerprint!.device}'),
-        Text('Brand: ${_fingerprint!.brand}'),
-        Text('Model: ${_fingerprint!.model}'),
-        Text('OS Version: ${_fingerprint!.osVersion}'),
-        Text('Physical Device: ${_fingerprint!.isPhysicalDevice}'),
-        Text('Rooted/Jail broken: ${_fingerprint!.isRooted}'),
-        Text('Development Mode: ${_fingerprint!.isDevelopmentMode}'),
-        Text('Hash: ${_fingerprint!.hash}'),
-        Text('Timestamp: ${_fingerprint!.timestamp}'),
-        Text('Risk Score: $_riskScore'),
-      ],
-    );
-  }
+  // Widget _buildFingerprintInfo() {
+  //   if (_fingerprint == null) return const SizedBox.shrink();
+  //
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: [
+  //       Text('Platform: ${_fingerprint!.platform}'),
+  //       Text('Device: ${_fingerprint!.device}'),
+  //       Text('Brand: ${_fingerprint!.brand}'),
+  //       Text('Model: ${_fingerprint!.model}'),
+  //       Text('OS Version: ${_fingerprint!.osVersion}'),
+  //       Text('Physical Device: ${_fingerprint!.isPhysicalDevice}'),
+  //       Text('Rooted/Jail broken: ${_fingerprint!.isRooted}'),
+  //       Text('Development Mode: ${_fingerprint!.isDevelopmentMode}'),
+  //       Text('Hash: ${_fingerprint!.hash}'),
+  //       Text('Timestamp: ${_fingerprint!.timestamp}'),
+  //       Text('Risk Score: $_riskScore'),
+  //     ],
+  //   );
+  // }
 
   Widget _buildAltchaWidget() {
     return AltchaWidget(
@@ -318,7 +322,7 @@ class _AuthCaptchaState extends State<AuthCaptcha> {
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        color: Colors.red.withOpacity(0.1),
+        color: Colors.red.withAlpha(1),
         border: Border.all(color: Colors.red),
       ),
       child: const Row(

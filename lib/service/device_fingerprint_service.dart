@@ -13,9 +13,14 @@ import '../config/app_logger.dart';
 import '../models/device_fingerprint_model.dart';
 
 class DeviceFingerprintService {
-  static final DeviceInfoPlugin _deviceInfo = DeviceInfoPlugin();
+  // Singleton instance
+  DeviceFingerprintService._();
+  static final DeviceFingerprintService instance = DeviceFingerprintService._();
 
-  static Future<DeviceFingerprint> generate() async {
+  // Now it's an instance member ✅
+  final DeviceInfoPlugin _deviceInfo = DeviceInfoPlugin();
+
+  Future<DeviceFingerprint> generate() async {
     try {
       AppLogger.info('Generating device fingerprint...');
 
@@ -42,14 +47,10 @@ class DeviceFingerprintService {
     }
   }
 
-  // ─────────────────────────────────────────────────────────────
-  // ANDROID
-  // ─────────────────────────────────────────────────────────────
-
-  static Future<DeviceFingerprint> _generateAndroidFingerprint(
-    bool isRooted,
-    bool isDevelopmentMode,
-  ) async {
+  Future<DeviceFingerprint> _generateAndroidFingerprint(
+      bool isRooted,
+      bool isDevelopmentMode,
+      ) async {
     final androidInfo = await _deviceInfo.androidInfo;
 
     final sensorVariance = await _collectAccelerometerVariance();
@@ -92,14 +93,10 @@ class DeviceFingerprintService {
     );
   }
 
-  // ─────────────────────────────────────────────────────────────
-  // IOS
-  // ─────────────────────────────────────────────────────────────
-
-  static Future<DeviceFingerprint> _generateIOSFingerprint(
-    bool isRooted,
-    bool isDevelopmentMode,
-  ) async {
+  Future<DeviceFingerprint> _generateIOSFingerprint(
+      bool isRooted,
+      bool isDevelopmentMode,
+      ) async {
     final iosInfo = await _deviceInfo.iosInfo;
 
     final sensorVariance = await _collectAccelerometerVariance();
@@ -140,41 +137,35 @@ class DeviceFingerprintService {
     );
   }
 
-  // ─────────────────────────────────────────────────────────────
-  // SIGNAL COLLECTORS
-  // ─────────────────────────────────────────────────────────────
-
-  static Future<double> _collectAccelerometerVariance() async {
+  Future<double> _collectAccelerometerVariance() async {
     final samples = <double>[];
     final completer = Completer<double>();
 
-    late StreamSubscription sub;
-    sub = accelerometerEvents.listen((event) {
+    late StreamSubscription<AccelerometerEvent> sub;
+    sub = accelerometerEventStream().listen((event) {
       final magnitude =
           event.x * event.x + event.y * event.y + event.z * event.z;
       samples.add(magnitude);
 
       if (samples.length >= 20) {
         sub.cancel();
-
         final mean = samples.reduce((a, b) => a + b) / samples.length;
         final variance =
             samples
                 .map((v) => (v - mean) * (v - mean))
                 .reduce((a, b) => a + b) /
-            samples.length;
-
+                samples.length;
         completer.complete(variance);
       }
     });
 
     return completer.future.timeout(
       const Duration(seconds: 2),
-      onTimeout: () => 0.0, // emulators usually hit this
+      onTimeout: () => 0.0,
     );
   }
 
-  static Future<Map<String, dynamic>> _collectBatteryInfo() async {
+  Future<Map<String, dynamic>> _collectBatteryInfo() async {
     try {
       final battery = Battery();
       return {
@@ -186,42 +177,37 @@ class DeviceFingerprintService {
     }
   }
 
-  static Future<String> _collectNetworkType() async {
+  Future<String> _collectNetworkType() async {
     final connectivity = Connectivity();
     return (await connectivity.checkConnectivity()).toString();
   }
 
-  // ─────────────────────────────────────────────────────────────
-  // HASH
-  // ─────────────────────────────────────────────────────────────
-
-  static String _generateHash(Map<String, dynamic> data) {
+  String _generateHash(Map<String, dynamic> data) {
     return sha256.convert(utf8.encode(json.encode(data))).toString();
   }
 
-  // ─────────────────────────────────────────────────────────────
-  // RISK SCORING
-  // ─────────────────────────────────────────────────────────────
-
-  static int calculateRiskScore(DeviceFingerprint f) {
+  int calculateRiskScore(DeviceFingerprint f) {
     int score = 0;
 
-    if (f.isRooted) score += 50;
-    if (f.isDevelopmentMode) score += 30;
-    if (!f.isPhysicalDevice) score += 40;
+    if (f.isRooted) {
+      score += 50;
+    }
+    if (f.isDevelopmentMode) {
+      score += 30;
+    }
+    if (!f.isPhysicalDevice) {
+      score += 40;
+    }
 
-    // Sensor entropy (very strong emulator signal)
     if (f.sensorVariance != null && f.sensorVariance! < 0.05) {
       score += 25;
       AppLogger.warning('Low sensor variance detected');
     }
 
-    // Battery anomalies
     if (f.batteryLevel == -1 || f.batteryState == 'unknown') {
       score += 15;
     }
 
-    // Network oddities
     if (f.networkType!.contains('none')) {
       score += 10;
     }

@@ -1,5 +1,4 @@
-import 'package:auth_captcha/models/captcha_result.dart';
-import 'package:auth_captcha/widgets/auth_captcha.dart';
+import 'package:auth_captcha/auth_captcha.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'AUTH CAPTCHA Demo',
+      title: 'TriShield CAPTCHA Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
@@ -41,7 +40,7 @@ class ExampleListPage extends StatelessWidget {
             'Basic Integration',
             'Simple CAPTCHA widget integration',
             Icons.security,
-            () => Navigator.push(
+                () => Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => const BasicExamplePage(),
@@ -54,7 +53,7 @@ class ExampleListPage extends StatelessWidget {
             'Login Form',
             'CAPTCHA in a login form',
             Icons.login,
-            () => Navigator.push(
+                () => Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => const LoginFormExample(),
@@ -67,7 +66,7 @@ class ExampleListPage extends StatelessWidget {
             'Registration Form',
             'CAPTCHA in a registration form',
             Icons.person_add,
-            () => Navigator.push(
+                () => Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => const RegistrationFormExample(),
@@ -80,12 +79,12 @@ class ExampleListPage extends StatelessWidget {
   }
 
   Widget _buildExampleCard(
-    BuildContext context,
-    String title,
-    String subtitle,
-    IconData icon,
-    VoidCallback onTap,
-  ) {
+      BuildContext context,
+      String title,
+      String subtitle,
+      IconData icon,
+      VoidCallback onTap,
+      ) {
     return Card(
       elevation: 2,
       child: ListTile(
@@ -158,7 +157,7 @@ class _BasicExamplePageState extends State<BasicExamplePage> {
               style: TextStyle(color: Colors.grey),
             ),
             const SizedBox(height: 24),
-            
+
             // Status Card
             if (_isVerified)
               Card(
@@ -195,28 +194,28 @@ class _BasicExamplePageState extends State<BasicExamplePage> {
                   ),
                 ),
               ),
-            
+
             const SizedBox(height: 24),
-            
+
             // CAPTCHA Widget
             AuthCaptcha(
               apiKey: 'YOUR_API_KEY_HERE', // Replace with your API key
               webUrl: 'https://yourwebsite.com', // Replace with your URL
               onResult: _handleCaptchaResult,
             ),
-            
+
             const SizedBox(height: 24),
-            
+
             // Action Button
             ElevatedButton.icon(
               onPressed: _isVerified
                   ? () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Proceeding with verified CAPTCHA...'),
-                        ),
-                      );
-                    }
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Proceeding with verified CAPTCHA...'),
+                  ),
+                );
+              }
                   : null,
               icon: const Icon(Icons.arrow_forward),
               label: const Text('Continue'),
@@ -322,7 +321,7 @@ class _LoginFormExampleState extends State<LoginFormExample> {
                 style: TextStyle(color: Colors.grey),
               ),
               const SizedBox(height: 32),
-              
+
               // Email Field
               TextFormField(
                 controller: _emailController,
@@ -343,7 +342,7 @@ class _LoginFormExampleState extends State<LoginFormExample> {
                 },
               ),
               const SizedBox(height: 16),
-              
+
               // Password Field
               TextFormField(
                 controller: _passwordController,
@@ -364,16 +363,16 @@ class _LoginFormExampleState extends State<LoginFormExample> {
                 },
               ),
               const SizedBox(height: 24),
-              
+
               // CAPTCHA
               AuthCaptcha(
                 apiKey: 'YOUR_API_KEY_HERE',
                 webUrl: 'https://yourwebsite.com',
                 onResult: _handleCaptchaResult,
               ),
-              
+
               const SizedBox(height: 24),
-              
+
               // Login Button
               ElevatedButton(
                 onPressed: _isLoading ? null : _handleLogin,
@@ -382,10 +381,10 @@ class _LoginFormExampleState extends State<LoginFormExample> {
                 ),
                 child: _isLoading
                     ? const SizedBox(
-                        height: 20,
-                        width: 20,
-                        child: CircularProgressIndicator(strokeWidth: 2),
-                      )
+                  height: 20,
+                  width: 20,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                )
                     : const Text('Login'),
               ),
             ],
@@ -437,7 +436,7 @@ class _RegistrationFormExampleState extends State<RegistrationFormExample> {
 
   Future<void> _handleRegistration() async {
     if (!_formKey.currentState!.validate()) return;
-    
+
     if (!_agreeToTerms) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -447,7 +446,7 @@ class _RegistrationFormExampleState extends State<RegistrationFormExample> {
       );
       return;
     }
-    
+
     if (!_captchaVerified) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -498,7 +497,7 @@ class _RegistrationFormExampleState extends State<RegistrationFormExample> {
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 32),
-              
+
               // Name Field
               TextFormField(
                 controller: _nameController,
@@ -515,7 +514,7 @@ class _RegistrationFormExampleState extends State<RegistrationFormExample> {
                 },
               ),
               const SizedBox(height: 16),
-              
+
               // Email Field
               TextFormField(
                 controller: _emailController,
@@ -536,7 +535,7 @@ class _RegistrationFormExampleState extends State<RegistrationFormExample> {
                 },
               ),
               const SizedBox(height: 16),
-              
+
               // Password Field
               TextFormField(
                 controller: _passwordController,
@@ -557,7 +556,7 @@ class _RegistrationFormExampleState extends State<RegistrationFormExample> {
                 },
               ),
               const SizedBox(height: 16),
-              
+
               // Confirm Password Field
               TextFormField(
                 controller: _confirmPasswordController,
@@ -575,7 +574,7 @@ class _RegistrationFormExampleState extends State<RegistrationFormExample> {
                 },
               ),
               const SizedBox(height: 16),
-              
+
               // Terms Checkbox
               CheckboxListTile(
                 value: _agreeToTerms,
@@ -587,16 +586,16 @@ class _RegistrationFormExampleState extends State<RegistrationFormExample> {
                 contentPadding: EdgeInsets.zero,
               ),
               const SizedBox(height: 16),
-              
+
               // CAPTCHA
               AuthCaptcha(
                 apiKey: 'YOUR_API_KEY_HERE',
                 webUrl: 'https://yourwebsite.com',
                 onResult: _handleCaptchaResult,
               ),
-              
+
               const SizedBox(height: 24),
-              
+
               // Register Button
               ElevatedButton(
                 onPressed: _isLoading ? null : _handleRegistration,
@@ -605,10 +604,10 @@ class _RegistrationFormExampleState extends State<RegistrationFormExample> {
                 ),
                 child: _isLoading
                     ? const SizedBox(
-                        height: 20,
-                        width: 20,
-                        child: CircularProgressIndicator(strokeWidth: 2),
-                      )
+                  height: 20,
+                  width: 20,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                )
                     : const Text('Create Account'),
               ),
             ],
