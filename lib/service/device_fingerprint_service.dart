@@ -24,8 +24,8 @@ class DeviceFingerprintService {
     try {
       AppLogger.info('Generating device fingerprint...');
 
-      bool isRooted = false;
-      bool isDevelopmentMode = false;
+      var isRooted = false;
+      var isDevelopmentMode = false;
 
       try {
         isRooted = await JailbreakRootDetection().isJailBroken;
@@ -187,7 +187,7 @@ class DeviceFingerprintService {
   }
 
   int calculateRiskScore(DeviceFingerprint f) {
-    int score = 0;
+    var score = 0;
 
     if (f.isRooted) {
       score += 50;

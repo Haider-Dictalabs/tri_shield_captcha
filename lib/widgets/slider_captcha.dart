@@ -254,7 +254,6 @@ class _SliderCaptchaState extends State<SliderCaptcha> {
                   children: [
                     Expanded(
                       child: Slider(
-                        min: 0,
                         max: ((captchaData!['canvasW'] as num) -
                             (captchaData!['pieceW'] as num))
                             .toDouble(),

@@ -6,7 +6,7 @@ class Constants {
   static const sliderBaseUrl = '$captchaBaseUrl/slider';
   static const altchaChallengeUrl = '$captchaBaseUrl/altcha';
   static const verifyUserKeyUrl = '$triShieldBaseUrl/keys/verifyUserKey';
-  static const saveCaptchaLogUrl = "$triShieldBaseUrl/logs/saveLog";
+  static const saveCaptchaLogUrl = '$triShieldBaseUrl/logs/saveLog';
   static const newCaptchaUrl = '$sliderBaseUrl/captcha/new';
   static const verifyCaptchaUrl = '$sliderBaseUrl/captcha/verify';
 

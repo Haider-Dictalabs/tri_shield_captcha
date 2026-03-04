@@ -1,6 +1,6 @@
-# TriShield CAPTCHA
+# AUTH-CAPTCHA
 
-A comprehensive Flutter CAPTCHA solution with multi-layer security verification. TriShield CAPTCHA provides bot detection, device fingerprinting, ALTCHA proof-of-work, and slider CAPTCHA challenges to protect your Flutter applications.
+A comprehensive Flutter CAPTCHA solution with multi-layer security verification. AUTH-CAPTCHA provides bot detection, device fingerprinting, ALTCHA proof-of-work, and slider CAPTCHA challenges to protect your Flutter applications.
 
 ## Features
 
@@ -56,7 +56,7 @@ class MyLoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: TriShieldCaptcha(
+        child: AuthCaptcha(
           apiKey: 'your-api-key-here',
           webUrl: 'https://yourwebsite.com',
           onResult: (CaptchaResult result) {
@@ -123,8 +123,8 @@ class _AdvancedLoginPageState extends State<AdvancedLoginPage> {
             ),
             SizedBox(height: 24),
             
-            // TriShield CAPTCHA
-            TriShieldCaptcha(
+            // AuthCAPTCHA
+            AuthCaptcha(
               apiKey: 'your-api-key',
               webUrl: 'https://yourwebsite.com',
               includePadding: true,
@@ -151,7 +151,7 @@ class _AdvancedLoginPageState extends State<AdvancedLoginPage> {
 You need to obtain an API key from TriShield. Contact the TriShield team or visit their dashboard to generate your keys.
 
 ```dart
-TriShieldCaptcha(
+AuthCaptcha(
   apiKey: 'your-api-key-here',  // Required
   webUrl: 'https://yourapp.com', // Required - your website/app URL
   onResult: (result) { /* ... */ },
@@ -169,7 +169,7 @@ TriShieldCaptcha(
 
 ## Security Levels
 
-TriShield CAPTCHA supports three security levels:
+AUTH-CAPTCHA supports three security levels:
 
 ### Level 1: Device Fingerprinting
 - Automatic verification using device fingerprinting
@@ -208,7 +208,7 @@ import 'package:tri_shield_captcha/auth_captcha.dart';
 The widget handles errors gracefully:
 
 ```dart
-TriShieldCaptcha(
+AuthCaptcha(
   apiKey: 'invalid-key',
   webUrl: 'https://example.com',
   onResult: (result) {

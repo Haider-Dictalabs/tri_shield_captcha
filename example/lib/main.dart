@@ -264,7 +264,9 @@ class _LoginFormExampleState extends State<LoginFormExample> {
   }
 
   Future<void> _handleLogin() async {
-    if (!_formKey.currentState!.validate()) return;
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
     if (!_captchaVerified) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -278,8 +280,7 @@ class _LoginFormExampleState extends State<LoginFormExample> {
     setState(() => _isLoading = true);
 
     // Simulate API call
-    await Future.delayed(const Duration(seconds: 2));
-
+    await Future<void>.delayed(const Duration(seconds: 2));
     if (mounted) {
       setState(() => _isLoading = false);
       ScaffoldMessenger.of(context).showSnackBar(
@@ -435,7 +436,9 @@ class _RegistrationFormExampleState extends State<RegistrationFormExample> {
   }
 
   Future<void> _handleRegistration() async {
-    if (!_formKey.currentState!.validate()) return;
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
 
     if (!_agreeToTerms) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -460,8 +463,7 @@ class _RegistrationFormExampleState extends State<RegistrationFormExample> {
     setState(() => _isLoading = true);
 
     // Simulate API call
-    await Future.delayed(const Duration(seconds: 2));
-
+    await Future<void>.delayed(const Duration(seconds: 2));
     if (mounted) {
       setState(() => _isLoading = false);
       ScaffoldMessenger.of(context).showSnackBar(
